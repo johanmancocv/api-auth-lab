@@ -1,23 +1,20 @@
 import requests
-import urllib3
-
-# Disable warnings for unverified HTTPS
-urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 def test_invalid_auth():
-    url = "https://run.mocky.io/v3/3ec54759-3d40-4dbc-bd4b-9f39dbe55123"
+    url = "http://127.0.0.1:5000/unauthorized"   # Local API, guaranteed to work
 
-    print("Sending request to forced 401 endpoint...")
-    response = requests.get(url, verify=False)  # FIX
+    print("Sending request to local 401 endpoint...")
+    response = requests.get(url)
 
     print(f"Status Code: {response.status_code}")
 
     if response.status_code == 401:
-        print("Authentication failed (expected).")
+        print("Local 401 endpoint working perfectly.")
     else:
         print("Unexpected response:")
         print(response.text)
 
 if __name__ == "__main__":
     test_invalid_auth()
+
 
