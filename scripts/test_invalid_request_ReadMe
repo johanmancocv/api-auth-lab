@@ -1,0 +1,24 @@
+This folder contains a small Python script used to test a local API endpoint
+that returns a 401 Unauthorized response.
+
+The script (test_invalid_auth.py) sends a GET request to:
+http://127.0.0.1:5000/unauthorized
+and prints the status code to confirm that the endpoint correctly rejects
+requests without authentication.
+
+Before running the script, Python had to be installed and configured.
+Initially the system showed errors like "python is not recognized", so Python
+was installed, added to PATH, and Windows execution aliases were disabled.
+Then the 'requests' package was installed using: pip install requests
+
+To run the test:
+python test_invalid_auth.py
+
+Expected result:
+Status Code: 401
+
+The same endpoint was also tested manually using Postman by creating a GET
+request to the same URL with no headers. Postman also returned 401, confirming
+the expected behavior.
+
+This completes the simple local authentication test.
