@@ -1,0 +1,111 @@
+This script creates a local Flask-based mock API server designed to simulate the behavior of a sportsbook data provider during an onboarding process. It allows you to test API authentication, connectivity, and data retrieval without relying on external services.
+
+The mock API returns realistic sportsbook-style JSON responses for fixtures, odds, and settlements, as well as a dedicated endpoint for authentication failures.
+
+This server is required for running:
+
+test_invalid_request.py
+
+simulate_credentials_setup.py
+
+test_valid_request.py
+
+Purpose of This Mock API
+
+In a real sportsbook integration, the onboarding team would test:
+
+Whether the client can authenticate
+
+Whether the client can retrieve fixtures
+
+Whether odds can be consumed
+
+Whether settlements can be processed
+
+This mock server allows you to reproduce all these scenarios locally:
+´´´
+Onboarding Step	Simulated By
+Initial authentication failure	/unauthorized
+Credential setup	simulate_credentials_setup.py
+Authenticated data access	/fixtures, /odds, /settlements
+´´´
+It keeps the entire lab self-contained and demonstrates the real flow of diagnosing and fixing API integration issues.
+
+Endpoints and JSON Responses
+1. /unauthorized
+
+Simulates missing or invalid credentials.
+
+Status: 401 Unauthorized
+Response:
+´´´
+{
+  "error": "Unauthorized access"
+}
+
+2. /fixtures
+
+Returns a sample sports event.
+
+Status: 200 OK
+Response:
+
+[
+  {
+    "event_id": "EVT1001",
+    "league": "Premier League",
+    "home": "Liverpool",
+    "away": "Chelsea"
+  }
+]
+´´´
+3. /odds
+
+Returns odds for the event.
+
+Status: 200 OK
+Response:
+´´´
+[
+  {
+    "event_id": "EVT1001",
+    "market": "1X2",
+    "selection": "Liverpool",
+    "odds": 1.85
+  }
+]
+´´´
+4. /settlements
+
+Returns the settlement (final result) for the event.
+
+Status: 200 OK
+Response:
+´´´
+[
+  {
+    "event_id": "EVT1001",
+    "result": "home",
+    "payout": 1.85
+  }
+]
+´´´
+How to Run the Mock Server
+
+Make sure Flask is installed:
+
+pip install flask
+
+
+Then run:
+
+python mock_api_server.py
+
+
+You should see output like:
+´´´
+* Running on http://127.0.0.1:5000
+
+
+Leave this terminal open while running your test scripts.
+´´´
