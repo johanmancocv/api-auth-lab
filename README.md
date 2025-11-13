@@ -133,10 +133,16 @@ These skills are essential for **Technical Project Management roles** in sports 
 api-auth-lab/
 │
 ├── README.md
+│
 ├── scripts/
-│   ├── test_invalid_request.py
+│   ├── mock_api_server.py
+│   ├── mock_api_server_ReadMe.md
 │   ├── simulate_credentials_setup.py
+│   ├── simulate_credentials_setup_ReadMe.md
+│   ├── test_invalid_request.py
+│   ├── test_invalid_request_ReadMe.md
 │   └── test_valid_request.py
+│   └── test_valid_request_ReadMe.md
 │
 ├── jira_docs/
 │   ├── incident_report.md
@@ -149,7 +155,6 @@ api-auth-lab/
 └── reports/
     ├── test_results.md
     └── screenshots/
-
 ```
 
 ## Tags
