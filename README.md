@@ -141,7 +141,7 @@ api-auth-lab/
 │   ├── simulate_credentials_setup_ReadMe.md
 │   ├── test_invalid_request.py
 │   ├── test_invalid_request_ReadMe.md
-│   └── test_valid_request.py
+│   ├── test_valid_request.py
 │   └── test_valid_request_ReadMe.md
 │
 ├── jira_docs/
@@ -150,7 +150,9 @@ api-auth-lab/
 │   └── Issue: ONB-104 resolution_plan.md
 │
 ├── sql/
-│   └── analysis_examples.sql
+│   ├── analysis_examples.sql
+│   ├── FotoSQLmensaje.PNG
+│   ├── FotoSQLresultado.PNG
 │
 └── reports/
     ├── test_results.md
