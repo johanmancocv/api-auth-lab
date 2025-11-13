@@ -152,7 +152,7 @@ api-auth-lab/
 ├── sql/
 │   ├── analysis_examples.sql
 │   ├── FotoSQLmensaje.PNG
-│   ├── FotoSQLresultado.PNG
+│   └── FotoSQLresultado.PNG
 │
 └── reports/
     ├── test_results.md
