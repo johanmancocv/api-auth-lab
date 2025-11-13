@@ -10,4 +10,4 @@ Reproduction Steps:
 Expected: 200 after authentication
 Actual: 401 Unauthorized
 
-Link: https://johanmancocv.atlassian.net/jira/software/projects/KAN/list/?jql=project+%3D+%22KAN%22+ORDER+BY+created+DESC&selectedIssue=KAN-3&atlOrigin=eyJpIjoiZTE4YjczODBiMGJkNDMyNzhlZTc3MjNkZTljM2YxMDgiLCJwIjoiaiJ9
+
