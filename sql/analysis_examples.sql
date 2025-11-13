@@ -1,4 +1,15 @@
 /* ==========================================================
+   00 — Drop tables if they already exist
+   ========================================================== */
+
+DROP TABLE IF EXISTS fixtures;
+DROP TABLE IF EXISTS settlements;
+DROP TABLE IF EXISTS odds;
+DROP TABLE IF EXISTS bets;
+DROP TABLE IF EXISTS api_error_log;
+GO
+
+/* ==========================================================
    01 — Create mock sportsbook tables
    ========================================================== */
 
@@ -69,6 +80,8 @@ INSERT INTO api_error_log VALUES
    03 — Detect missing settlements
    ========================================================== */
 
+PRINT '--- Missing Settlements (Events that started >2h ago with no settlement) ---';
+
 SELECT f.event_id, f.start_time
 FROM fixtures f
 LEFT JOIN settlements s ON f.event_id = s.event_id
@@ -76,9 +89,12 @@ WHERE f.start_time < DATEADD(HOUR, -2, GETDATE())
   AND s.event_id IS NULL;
 
 
+
 /* ==========================================================
    04 — Reconcile bets vs settlements
    ========================================================== */
+
+PRINT '--- Reconciliation Results (bets vs settlements) ---';
 
 SELECT 
     b.event_id,
@@ -91,9 +107,12 @@ WHERE b.event_id = 'EVT1001'
 GROUP BY b.event_id;
 
 
+
 /* ==========================================================
    05 — Detect duplicate odds entries
    ========================================================== */
+
+PRINT '--- Duplicate Odds Detected (events with duplicates) ---';
 
 SELECT event_id, market, COUNT(*) AS duplicates
 FROM odds
@@ -101,9 +120,12 @@ GROUP BY event_id, market
 HAVING COUNT(*) > 1;
 
 
+
 /* ==========================================================
    06 — Show failed API calls
    ========================================================== */
+
+PRINT '--- API Error Log (401/403/500 errors) ---';
 
 SELECT timestamp, endpoint, status_code, error_message
 FROM api_error_log
@@ -111,9 +133,12 @@ WHERE status_code IN (401, 403, 500)
 ORDER BY timestamp DESC;
 
 
+
 /* ==========================================================
    07 — Validate timing consistency (odds vs fixtures)
    ========================================================== */
+
+PRINT '--- Timing Check (odds received before fixture created) ---';
 
 SELECT 
     o.event_id, 
