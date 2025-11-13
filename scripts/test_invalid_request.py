@@ -1,12 +1,15 @@
 import requests
 
+API_BASE = "http://127.0.0.1:5000"   # Local Flask mock API
+ENDPOINT = "/unauthorized"           # 401 endpoint
+
 def test_invalid_auth():
     """
-    Sends a request to the local 401 test endpoint and validates
+    Sends a request to the local unauthorized endpoint and validates
     that authentication fails as expected.
     """
 
-    url = "http://127.0.0.1:5000/unauthorized"  # Local endpoint
+    url = API_BASE + ENDPOINT
 
     print("Sending request to local 401 endpoint...")
     try:
@@ -25,5 +28,6 @@ def test_invalid_auth():
 
 if __name__ == "__main__":
     test_invalid_auth()
+
 
 
