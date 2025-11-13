@@ -93,8 +93,8 @@ This confirms that the onboarding blocker was resolved and the API now functions
 /settlements-------401------------200
 ```
 A full summary is available in:
-➡️ reports/test_results.md
-➡️ reports/screenshots/
+1. reports/test_results.md
+2. reports/screenshots/
 
 ## Jira Documentation
 
@@ -164,7 +164,94 @@ api-auth-lab/
 - onboarding
 - diagnostics
 
+## How to Run This Lab
+
+**1. Follow the steps below to reproduce the full onboarding simulation, from authentication failure (401) to successful API access (200).**
+
+Install Dependencies
+This lab requires Python 3, plus: 
+
+```
+pip install flask requests 
+``` 
+**2. Start the Mock API Server**
+
+This server simulates a sportsbook API provider.
+
+Run: 
+``` 
+python mock_api_server.py 
+```
+
+Expected: 
+``` 
+Running on http://127.0.0.1:5000 
+```
+
+Leave this terminal window open and running throughout the entire lab.
+
+Endpoints provided: 
+``` 
+/unauthorized → returns 401
+
+/fixtures → returns sample event data
+
+/odds → returns sample odds
+
+/settlements → returns sample settlement data 
+``` 
+**3. Reproduce the Authentication Failure (401)**
+
+Open a new terminal window (do NOT stop the Flask server) and run: 
+```
+python scripts/test_invalid_request.py 
+```
+
+Expected output: 
+``` 
+Sending request to local 401 endpoint... Status Code: 401 Authentication failed: Invalid or missing API credentials. 
+```
+
+This represents the initial failing state of the onboarding.
+
+Simulate Credential Setup
+Next, simulate the step where the provider configures valid credentials: 
+``` 
+python scripts/simulate_credentials_setup.py
+```
+
+This generates:
+
+- credentials.json
+  
+containing:
+
+- client_id
+
+- client_secret
+
+- access_token
+
+This represents the “fix” applied by the onboarding team.
+
+**Validate Successful API Access (200 OK)
+With credentials in place, test the real integration endpoints:** 
+``` 
+python scripts/test_valid_request.py 
+```
+
+Expected: 
+``` 
+/fixtures -> 200 /odds -> 200 /settlements -> 200 Authentication successful. API connectivity verified. 
+```
+
+This confirms that the onboarding blocker has been resolved.
+
+**Execution Flow Summary Step Script Expected Result 1 mock_api_server.py Server running on localhost 2 test_invalid_request.py 401 Unauthorized 3 simulate_credentials_setup.py credentials.json created 4 test_valid_request.py 200 OK for all endpoints**
+
+
 ## Author
 
 Johan Manco Cardona
+
 **Technical Project Management | Sports Data | API Integrations**
