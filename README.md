@@ -127,13 +127,6 @@ This lab demonstrates Johan’s:
 
 These skills are essential for **Technical Project Management roles** in sports data integrations.
 
-## Live Demo (Replit)
-
-Run the project online without installing anything:
-
-👉 (Insert your Replit link here)
-https://replit.com/@your-user/api-auth-lab
-
 ## Repository Structure
 
 ```bash
