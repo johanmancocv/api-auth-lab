@@ -145,12 +145,12 @@ api-auth-lab/
 │   └── test_valid_request_ReadMe.md
 │
 ├── jira_docs/
-│   ├── incident_report.md
-│   ├── root_cause.md
-│   └── resolution_plan.md
+│   ├── Issue: ONB-102 incident_report.md
+│   ├── Issue: ONB-103 root_cause.md
+│   └── Issue: ONB-104 resolution_plan.md
 │
 ├── sql/
-│   └── error_log.sql
+│   └── analysis_examples.sql
 │
 └── reports/
     ├── test_results.md
