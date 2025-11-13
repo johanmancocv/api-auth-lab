@@ -1,3 +1,5 @@
+It’s a locally simulated API so I can test the onboarding flow end-to-end.
+
 This script creates a local Flask-based mock API server designed to simulate the behavior of a sportsbook data provider during an onboarding process. It allows you to test API authentication, connectivity, and data retrieval without relying on external services.
 
 The mock API returns realistic sportsbook-style JSON responses for fixtures, odds, and settlements, as well as a dedicated endpoint for authentication failures.
